@@ -1,0 +1,44 @@
+--1
+select job ,avg(sal) from emp group by job having avg(sal)>2000;
+--2
+select job ,avg(sal) from emp where sal>2000 group by job having avg(sal)>3000;
+--3
+select max(emp.sal),min(emp.sal),dept.dname
+ from emp join  dept on emp.deptno = dept.deptno group by dept.dname;
+--4
+select max(emp.sal),min(emp.sal),dept.dname,emp.job from emp join dept 
+on emp.deptno = dept.deptno group by emp.job,dept.dname;
+--5
+select job, avg(sal) ,min(sal),max(sal),sum(sal)
+ from emp where job like '%MAN%' 
+group by job;
+--6
+select sum(deptno)/20 from emp where deptno = 20 ;
+--7 
+select dept.dname ,avg(emp.sal) from emp join dept on emp.deptno = dept.deptno
+group by dept.dname having avg(emp.sal)>2000;
+--8
+select dept.dname , emp.job  from emp join dept on emp.deptno=dept.deptno
+group by emp.job,dept.dname  having avg(emp.sal)>2500;
+--9
+select avg(sal),job from emp  where job like '%MAN%' group by job having avg(sal)>1000;
+--10
+select max(maxxx)
+from (select avg(sal) maxxx from emp group by deptno),dept 
+group by dname;
+--11
+select job from emp group by job having min(sal)>1500;
+--12
+select emn1 "����10",emn2 "����20",emn3 "����30" ,  round(aaa1/emn1,0) "����10" ,  round(aaa2/emn2,0) "����20" ,  round(aaa3/emn3,0) "����30" from 
+ (select sum(deptno)/10 emn1 , sum(months_between(sysdate,hiredate)/12) aaa1 from emp where deptno = 10),
+ (select sum(deptno)/20 emn2, sum(months_between(sysdate,hiredate)/12) aaa2 from emp where deptno = 20),
+ (select sum(deptno)/30 emn3, sum(months_between(sysdate,hiredate)/12) aaa3  from emp where deptno = 30)
+  ,emp
+ group by emn1,emn2,emn3 ,aaa1,aaa2,aaa3;
+
+ 
+ 
+ 
+ 
+ 
+ 
