@@ -30,7 +30,7 @@ select 'The job id for'||ename||' is '||job from emp;
 --15. 显示出姓名中最后一个字母为"N"的员工姓名 (使用 substr或者 instr)
 select ename from emp where substr(ename,-1)=’N’;
 --16. 查询参加工作时间在每月 15日之后的员工姓名，参加工作时间17. 用"*"的个数表示员工的工资中包含多少"千"，如 3500，显示'***',5600,显示'*****'
-select ename,hiredate from emp whereto_char(hiredate,’DD’)>15;
+select ename,hiredate from emp where to_char(hiredate,’DD’)>15;
 --18.显示员工名，参加工作时间，参加工作 6个月后的第一个周一
 select ename,hiredate,next_day(add_months(hiredate,6),2) from emp;
 --19.显示员工姓名，月薪，年薪（13个月的月薪+10000元奖金+comm）要求别名为annual_salary,要求所有人的年薪都显示出来
